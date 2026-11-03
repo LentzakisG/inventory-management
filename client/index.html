@@ -4,6 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Factory Inventory Management System</title>
+  <script>
+    // Runs synchronously before first paint so a dark-mode user never sees a flash of
+    // the light theme. Saved choice wins; otherwise follow the OS preference.
+    (function () {
+      var theme = 'light';
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'dark' || saved === 'light') theme = saved;
+        else if (window.matchMedia('(prefers-color-scheme: dark)').matches) theme = 'dark';
+      } catch (e) {}
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
 </head>
 <body>
   <div id="app"></div>
